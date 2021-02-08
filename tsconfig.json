@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "outDir": "build/js"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
+/*
+https://www.tslang.cn/docs/handbook/tsconfig-json.html
+此配置文件 或 file watcher以支持ts的热编译
+*/
