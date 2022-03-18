@@ -1,0 +1,30 @@
+typescript随心学习笔记，目前用于应对Vue的源码解读压力。
+直接看的微软爹官方ts手册，网址为：https://www.tslang.cn/docs/handbook。
+算了跟白皮没法沟通，也看了菜鸟教程：https://www.runoob.com/typescript
+以后如果要同时学习复数文档，还是先看简单的再看难的，或者简单的里面没有的内容看难的
+
+用node运行编译后的JS文件！（node ./a.js）
+
+a
+基础类型、新增symbol
+b
+变量声明
+c
+函数
+c2
+容器（array map tuple）
+d
+类
+e
+接口
+showPartialPerson
+泛型
+g
+联合类型
+h
+命名空间
+i
+高级类型
+
+(文件夹)module
+模块
