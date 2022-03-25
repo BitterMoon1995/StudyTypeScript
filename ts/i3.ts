@@ -205,10 +205,10 @@ console.log(tga)
 
 type ssMapper = Record<string, string>
 
-let o: ssMapper = {
-    'name': 'Jack',
-    'race': 'nig',
-}
+// let o: ssMapper = {
+//     'name': 'Jack',
+//     'race': 'nig',
+// }
 
 //预定义的有条件类型
 // type setA = string | number

@@ -1,127 +1,41 @@
-// interface Person {
-//     firstname: string
-//     lastname: string
-//     sayHi: () => string
-// }
-//
-// let jack:Person
-// jack = {
-//     firstname: "jack",
-//     lastname: "wilson",
-//     sayHi(): string {
-//         return "我是杰克";
-//     }
-// }
-//
-// let michale:Person = {
-//     firstname: "michale", lastname: "trump", sayHi(): string {
-//         return "我是迈克尔";
-//     }
-// }
-//
-// console.log(jack.sayHi())
-// console.log(michale.firstname)
-// let option1: RunOption = {
-//     program: '测试程序',
-//     commandline: '-joinedStr'
-// }
-// console.log(option1.commandline)
-//
-// let option2: RunOption = {
-//     program: "运维程序",
-//     commandline: function () {
-//         return '运行情况良好！'
-//     }
-// }
-// console.log(typeof option2.commandline)
-//
-// let option3: RunOption = {
-//     program: "关闭程序",
-//     commandline: ['shutdown', '-joinedStr']
-// }
-// console.log(option3.commandline.length)
-//可索引接口
-// interface nameList {
-//     [i: number]: string
-// }
-//
-// let list1: nameList = ['joinedStr', 'b']
-// console.log(list1[0])
-//
-// let list11: nameList = {
-//     3: '尼哥',
-//     9: '黑狗'
-// }
-// console.log(list11[9])
-// console.log(list11[8])
-//
-// interface ages {
-//     [index: string]: number
-// }
-//
-// let list2: ages = {
-//     'john': 28,
-//     'nancy': 16
-// }
-// console.log(list2['nancy'])
-// interface Person {
-//     name: string
-// }
-//
-// interface Musician extends Person {
-//     instrument: string
-// }
-//
-// let drummer = <Musician>{}
-// drummer.instrument = '鼓'
-// drummer.name = '一斗牛牛'
-// console.log(drummer)
-//
-// interface Me extends Person, Musician {
-//     dress: string
-// }
-//
-// let me: Me = {} as Me
-// // let me: Me = <Me>new Object()
-// // let me: Me = <Me>{}
-// me.dress = '碎花洋裙'
-// console.log(me.dress)
-//混合类型接口：一个接口的实例可以同时做为函数和对象使用，并带有额外的属性。
-//就是说它既是一个函数，又是一个带有成员变量的类，这些成员变量还可以是函数
-//这种玩法一定得配一个工厂函数来玩
-// interface Counter {
-//     (start: number): string;
-//
-//     interval: number;
-//
-//     reset(): void;
-//
-//     add(num: number): void
-//
-//     getResult(): number
-// }
-// function getCounter(): Counter {
-//     //类型断言
-//     let counter = <Counter>function (start: number) {
-//     };
-//     counter.interval = 123;
-//     counter.reset = function () {
-//         counter.interval = 0
-//     };
-//     counter.add = function (n) {
-//         counter.interval += n
-//     }
-//     counter.getResult = function () {
-//         return counter.interval
-//     }
-//     return counter;
-// }
-// let c = getCounter();
-// c.add(1)
-// console.log(c.getResult())
-// c.add(6324)
-// console.log(c.getResult())
-// c.reset()
-// c.add(-123)
-// console.log(c.getResult())
+// 这样定义后，我们可以像使用其它接口一样使用这个函数类型的接口。
+// 下例展示了如何创建一个函数类型的变量，并将一个同类型的函数赋值给这个变量。
+// 对于函数类型的类型检查来说，函数的参数名不需要与接口里定义的名字相匹配。
+// 函数的参数会逐个进行检查，要求对应位置上的参数类型是兼容的。 如果你不想指定类型，TypeScript的类型系统会推断出参数类型，
+// 因为函数直接赋值给了 SearchFunc类型变量。
+var searchFunc;
+searchFunc = function (s1, s2) {
+    return s1.search(s2);
+};
+var AddClass = /** @class */ (function () {
+    function AddClass() {
+    }
+    AddClass.prototype.minus = function (a, b) {
+        return a - b;
+    };
+    AddClass.prototype.add = function (a, b) {
+        return a + b;
+    };
+    return AddClass;
+}());
+var instAddClass = new AddClass();
+console.log(instAddClass.add(1, 3), instAddClass.minus(2, 6));
+// 变态点2：在检查类对接口的实现时，又不检查类的静态成员
+// 导致结果1：类无法实现定义构造函数签名的接口
+var Gamer = /** @class */ (function () {
+    function Gamer(age, favGame) {
+        this.age = age;
+        this.favGame = favGame;
+    }
+    return Gamer;
+}());
+// 导致结果2：但是可以作为函数参数进行检查，这个参数可以是普通参数也可以是类型参数。
+// 写法1：作类型参数对其进行泛型约束
+function createGamer(gamerCst, age, favGame) {
+    return new gamerCst(age, favGame);
+}
+function playGame(gamer) {
+    console.log('游玩' + gamer.favGame);
+}
+playGame(createGamer(Gamer, 1, 'DNF'));
 //# sourceMappingURL=e.js.map

@@ -1,16 +1,16 @@
 //《构造函数》
-class Greeter {
-    greeting: string
-    static standardGreeting = 'Yes,sir.Right away,sir'
-
-    greet() {
-        if (this.greeting) {
-            return '问候语：' + this.greeting
-        }else {
-            return Greeter.standardGreeting
-        }
-    }
-}
+// class Greeter {
+//     greeting: string
+//     static standardGreeting = 'Yes,sir.Right away,sir'
+//
+//     greet() {
+//         if (this.greeting) {
+//             return '问候语：' + this.greeting
+//         }else {
+//             return Greeter.standardGreeting
+//         }
+//     }
+// }
 
 // let greeter: Greeter
 // greeter = new Greeter()
@@ -20,11 +20,11 @@ class Greeter {
 // 然后我们使用 typeof Greeter，意思是取Greeter类的类型，而不是实例的类型。 或者更确切的说，"告诉我 Greeter标识符的类型"，
 // 也就是构造函数的类型。 这个类型包含了类的所有静态成员和构造函数。 之后，就和前面一样，我们在 greeterMaker上使用 new，
 // 创建 Greeter的实例。
-let greeterMaker: typeof Greeter = Greeter
-console.log(greeterMaker.standardGreeting)
-let greeter2: Greeter = new greeterMaker()
-greeter2.greeting = '欢迎来到三台宝格丽！'
-console.log(greeter2.greet())
+// let greeterMaker: typeof Greeter = Greeter
+// console.log(greeterMaker.standardGreeting)
+// let greeter2: Greeter = new greeterMaker()
+// greeter2.greeting = '欢迎来到三台宝格丽！'
+// console.log(greeter2.greet())
 
 //方法重写
 // class PrinterClass {

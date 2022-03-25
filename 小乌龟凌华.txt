@@ -18,6 +18,7 @@ d
 e
 接口
 showPartialPerson
+f
 泛型
 g
 联合类型
@@ -25,6 +26,8 @@ h
 命名空间
 i
 高级类型
+j
+装饰器（注解）
 
 (文件夹)module
 模块
