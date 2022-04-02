@@ -41,8 +41,8 @@
 // console.log(i.substr(1))
 // // i.nigger()
 // //但是 Object类型的变量只是允许你给它赋任意值 - 但是却不能够在它上面调用任意的方法，即便它真的有这些方法
-// let o :object = {}
-// // o.nig()
+// let dress :object = {}
+// // dress.nig()
 
 // //void undefined null
 // function a() : void {
@@ -77,7 +77,7 @@
 //
 // infiniteLoop()
 
-// declare function create(o:object | 4396): '死妈明凯';
+// declare function create(dress:object | 4396): '死妈明凯';
 // create({name:'薇儿'})
 // create(4396)
 

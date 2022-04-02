@@ -34,8 +34,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // 也就是只能封印对Greeter类的静态成员的变更
 // @sealed
 var Greeter = /** @class */ (function () {
-    function Greeter(sentence) {
-        this.greeting = sentence;
+    function Greeter(greeting, salary) {
+        this.greeting = greeting;
+        this.salary = salary;
     }
     Greeter.prototype.greet = function () {
         return '问候语：' + this.greeting;
@@ -45,14 +46,15 @@ var Greeter = /** @class */ (function () {
     ], Greeter);
     return Greeter;
 }());
-// 语法点1：这里的T是接口，T extends CstFunc是接口继承接口
-// 语法点2：泛型约束：只要传入的类型有这个属性，我们就允许，就是说至少包含这一属性。 为此，我们需要列出对于T的约束要求。
-// 语法点3：在泛型里使用类类型：使用泛型创建工厂函数，并引用构造函数的类类型作为参数类型
+// 语法点1：泛型约束：只要传入的类型有这个属性，我们就允许，就是说至少包含这一属性。 为此，我们需要列出对于T的约束要求。
+// 语法点2：在泛型里使用类类型：使用泛型创建工厂函数，并引用构造函数的类类型作为参数类型
 // TS1238: Unable to resolve signature of class decorator when called as an expression.
 // Types of construct signatures are incompatible. Type 'new (...args: any[]) => (Anonymous class)'
 // is not assignable to type 'new (sentence: string) => Greeter'. Property 'greet' is missing
 // in type '(Anonymous class)' but required in type 'Greeter'.
 // function reloadConstructor(cst: GenericCst) //不行，因为实参是Greeter，与CstFunc不兼容
+// 暴论：只有重载构造方法的类装饰器有存在的意义。除非遇到要动类静态成员的情景
+// ★★★
 function reloadConstructor(cst) {
     return /** @class */ (function (_super) {
         __extends(class_1, _super);
@@ -60,12 +62,38 @@ function reloadConstructor(cst) {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.newProperty1 = '黑尼';
             _this.newProperty2 = '玩网畜';
-            _this.greeting = '嘻嘻';
             return _this;
+            // greeting = '嘻嘻'
         }
         return class_1;
     }(cst));
 }
-var greeter = new Greeter('欢迎来到王子大酒店');
-console.log(greeter);
+var greeter = new Greeter('欢迎来到王子大酒店', 2500);
+// console.log(greeter)
+// console.log(Object.keys(greeter))
+// 《二. 方法装饰器》
+// 周神释经：这个及以后的装饰器，都只对类静态成员生效了。静态属性还不准动。淋意义。
+var Dress = /** @class */ (function () {
+    function Dress() {
+    }
+    // 得是静态方法，不然这个注解不会生效
+    Dress.wear = function () {
+        console.log('哟，还没穿呢');
+    };
+    Dress.dressType = '公主裙';
+    __decorate([
+        isEnumerable(true)
+    ], Dress, "wear", null);
+    return Dress;
+}());
+function isEnumerable(enumerable) {
+    return function (target, funcName, desc) {
+        desc.enumerable = enumerable;
+    };
+}
+console.log(Object.keys(Dress));
+console.log(Dress.dressType);
+// 《三. 算了不弄了，屁用没得。类装饰器有点用》
+// 大概是js基于原型的特殊性，不动构造函数就等于不动实例，类装饰器能拦截甚至重载构造函数，
+// 进而影响new出来的实例，其他的有球用啊，只能动动静态成员了。
 //# sourceMappingURL=j.js.map

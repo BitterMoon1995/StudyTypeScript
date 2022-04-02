@@ -39,8 +39,8 @@
 //     }
 // }
 //
-// let o:StringPrinter = new StringPrinter()
-// o.doPrint()
+// let dress:StringPrinter = new StringPrinter()
+// dress.doPrint()
 
 //类与接口
 // interface Loan {

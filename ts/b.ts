@@ -95,7 +95,7 @@ let vs. const
 
 //对象解构属性重命名
 //你也可以给属性以不同的名字：这里的语法开始变得混乱。 你可以将 a: newName1 读做 "a 作为 newName1"。
-// 方向是从左到右，好像你写成了以下样子：let newName1 = o.a; let newName2 = o.b;
+// 方向是从左到右，好像你写成了以下样子：let newName1 = dress.a; let newName2 = dress.b;
 // let {me: newName1, age: newName2} = girl;
 // console.log(newName1, newName2)
 //令人困惑的是，这里的冒号不是指示类型的。 如果你想指定它的类型， 仍然需要在其后写上完整的模式。

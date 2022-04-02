@@ -26,8 +26,8 @@ let ganyu: Person = {
 // //有两种方式可以访问对象属性:
 // // 你可以使用 .property 或 ["property"]。
 // console.log(ganyu['name'],ganyu["nickname"],ganyu["age"])
-// function pluck(o, names) {
-//     return names.map(n => o[n]);
+// function pluck(dress, names) {
+//     return names.map(n => dress[n]);
 // }
 //
 // let r = pluck(ganyu, ['age', 'name', 'nickname'])
@@ -62,8 +62,8 @@ let ganyu: Person = {
 // showPartialPerson("playGame", ganyu)
 
 //操作符T[K]， 索引访问操作符。
-// function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
-//     return o[name]
+// function getProperty<T, K extends keyof T>(dress: T, name: K): T[K] {
+//     return dress[name]
 // }
 //
 // let property1: string = getProperty(ganyu, "nickname")
@@ -71,12 +71,12 @@ let ganyu: Person = {
 // let property3: Person[keyof Person] = getProperty(ganyu, "name")
 // let property4: Person['name'] = getProperty(ganyu, "age")
 
-// pluck(o, names)的typescript写法：
+// pluck(dress, names)的typescript写法：
 //1.类型参数：考虑类型参数T、K，且泛型约束K为T的成员名字符串字面量联合
 //2.参数为T类型的单例对象与K类型的数组
 //3.返回值为T.K或T[K]数组，即T类型的属性名为K的属性值组成的数组
-// function tsPluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
-//     return names.map(e => o[e])
+// function tsPluck<T, K extends keyof T>(dress: T, names: K[]): T[K][] {
+//     return names.map(e => dress[e])
 // }
 //
 // let valueList:Person[keyof Person][] = tsPluck(ganyu,["name","nickname"])
@@ -174,7 +174,7 @@ let genshin: Optional<Game> = {
 // type Proxify<T> = {
 //     [P in keyof T]: Proxy<T[P]>;
 // }
-// function proxify<T>(o: T): Proxify<T> {
+// function proxify<T>(dress: T): Proxify<T> {
 //     // ... wrap proxies ...
 //     ???
 // }
@@ -205,7 +205,7 @@ console.log(tga)
 
 type ssMapper = Record<string, string>
 
-// let o: ssMapper = {
+// let dress: ssMapper = {
 //     'name': 'Jack',
 //     'race': 'nig',
 // }
